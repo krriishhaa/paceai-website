@@ -8,709 +8,651 @@
     <meta property="og:title" content="PaceAI — AI Running Coach">
     <meta property="og:description" content="The world's smartest AI running companion. Real-time voice coaching that adapts every second.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://paceai.app">
+    <meta property="og:url" content="https://krriishhaa.github.io/paceai-website/">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --orange: #f97316;
-            --orange-dark: #ea580c;
-            --bg: #000;
-            --surface: #111;
-            --surface-2: #1a1a1a;
-            --text: #fff;
-            --text-secondary: rgba(255,255,255,0.6);
-            --text-tertiary: rgba(255,255,255,0.35);
-            --border: rgba(255,255,255,0.08);
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Nav */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            backdrop-filter: blur(20px);
-            background: rgba(0,0,0,0.8);
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--orange);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        nav a:hover { color: var(--text); }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--orange);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--orange-dark);
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.08);
-            color: white;
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.12);
-        }
-
-        /* Hero */
-        .hero {
-            padding: 160px 0 100px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-glow {
-            position: absolute;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 400px;
-            background: radial-gradient(ellipse, rgba(249,115,22,0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero h1 {
-            font-size: clamp(48px, 8vw, 80px);
-            font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -2px;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--orange), #fb923c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: var(--text-secondary);
-            max-width: 560px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 14px;
-            background: rgba(249,115,22,0.1);
-            border: 1px solid rgba(249,115,22,0.3);
-            border-radius: 100px;
-            font-size: 13px;
-            color: var(--orange);
-            margin-bottom: 24px;
-        }
-
-        /* Phone Mockup */
-        .phone-section {
-            display: flex;
-            justify-content: center;
-            padding: 60px 0;
-        }
-
-        .phone-mockup {
-            width: 300px;
-            height: 620px;
-            border-radius: 40px;
-            border: 3px solid rgba(255,255,255,0.15);
-            overflow: hidden;
-            background: #000;
-            position: relative;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-        }
-
-        .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 28px;
-            background: #000;
-            border-radius: 0 0 16px 16px;
-            z-index: 2;
-        }
-
-        .phone-screen {
-            padding: 44px 20px 20px;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        /* Features */
-        .features {
-            padding: 120px 0;
-        }
-
-        .section-label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--orange);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 60px;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-        }
-
-        .feature-card {
-            padding: 32px;
-            background: var(--surface);
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(249,115,22,0.3);
-            transform: translateY(-2px);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: rgba(249,115,22,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .feature-card p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* Coaching Demo */
-        .coaching-section {
-            padding: 120px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .coaching-demo {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .chat-bubble {
-            padding: 12px 16px;
-            border-radius: 16px;
-            font-size: 14px;
-            line-height: 1.5;
-            max-width: 85%;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .chat-coach {
-            background: var(--surface-2);
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-        }
-
-        .chat-user {
-            background: var(--orange);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-        }
-
-        .chat-context {
-            font-size: 11px;
-            color: var(--text-tertiary);
-            text-align: center;
-            padding: 8px 0;
-        }
-
-        /* How it works */
-        .how-it-works {
-            padding: 120px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-            margin-top: 60px;
-        }
-
-        .step {
-            text-align: center;
-            padding: 32px 20px;
-        }
-
-        .step-number {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(249,115,22,0.1);
-            border: 2px solid var(--orange);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--orange);
-            margin: 0 auto 20px;
-        }
-
-        .step h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .step p {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        /* CTA */
-        .cta {
-            padding: 120px 0;
-            text-align: center;
-            border-top: 1px solid var(--border);
-        }
-
-        .cta h2 {
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .cta p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-        }
-
-        .waitlist-form {
-            display: flex;
-            gap: 10px;
-            max-width: 440px;
-            margin: 0 auto;
-        }
-
-        .waitlist-form input {
-            flex: 1;
-            padding: 14px 18px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            background: var(--surface);
-            color: white;
-            font-size: 15px;
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .waitlist-form input:focus {
-            border-color: var(--orange);
-        }
-
-        .waitlist-form input::placeholder {
-            color: var(--text-tertiary);
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 0 40px;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-links a {
-            color: var(--text-tertiary);
-            text-decoration: none;
-            font-size: 13px;
-        }
-
-        .footer-links a:hover { color: var(--text-secondary); }
-
-        .footer-copy {
-            font-size: 13px;
-            color: var(--text-tertiary);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero { padding: 120px 0 60px; }
-            .feature-grid { grid-template-columns: 1fr; }
-            .waitlist-form { flex-direction: column; }
-            .footer-content { flex-direction: column; text-align: center; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="logo">
-                <div class="logo-icon">🏃</div>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="20" r="18" stroke="rgba(249,115,22,0.2)" stroke-width="3"/>
+                <path d="M20 2 A18 18 0 0 1 38 20" stroke="#f97316" stroke-width="3" stroke-linecap="round">
+                    <animateTransform attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="1s" repeatCount="indefinite"/>
+                </path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                </div>
                 PaceAI
-            </div>
-            <div class="nav-links">
+            </a>
+            <div class="nav-links" id="navLinks">
                 <a href="#features">Features</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#coaching">Coaching</a>
-                <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="#waitlist" class="btn btn-primary btn-sm">Join Waitlist</a>
             </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <section class="hero">
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#coaching">Coaching</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <a href="#waitlist" class="btn btn-primary">Join Waitlist</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
         <div class="hero-glow"></div>
+        <div class="hero-glow-2"></div>
         <div class="container">
-            <div class="hero-badge">
-                <span>🎉</span> Coming soon to the App Store
-            </div>
-            <h1>Your AI coach.<br><span>Every single run.</span></h1>
-            <p>Not another tracker. PaceAI is an elite running coach in your ear — monitoring your pace, heart rate, and cadence, and coaching you in real time with a natural voice.</p>
-            <div class="hero-buttons">
-                <a href="#waitlist" class="btn btn-primary">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    Join the Waitlist
-                </a>
-                <a href="#features" class="btn btn-secondary">Learn More</a>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge animate-on-scroll">
+                        <span class="badge-dot"></span>
+                        Coming soon to the App Store
+                    </div>
+                    <h1 class="animate-on-scroll">Your AI coach.<br><span class="gradient-text">Every single run.</span></h1>
+                    <p class="hero-subtitle animate-on-scroll">Not another tracker. PaceAI is an elite running coach in your ear — monitoring your pace, heart rate, and cadence, coaching you in real time with a natural voice.</p>
+                    <div class="hero-buttons animate-on-scroll">
+                        <a href="#waitlist" class="btn btn-primary btn-lg">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Join the Waitlist
+                        </a>
+                        <a href="#features" class="btn btn-secondary btn-lg">
+                            Learn More
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </a>
+                    </div>
+                    <div class="hero-social-proof animate-on-scroll">
+                        <div class="avatar-stack">
+                            <div class="avatar" style="background:#f97316">K</div>
+                            <div class="avatar" style="background:#3b82f6">M</div>
+                            <div class="avatar" style="background:#10b981">R</div>
+                            <div class="avatar" style="background:#8b5cf6">A</div>
+                            <div class="avatar" style="background:#ec4899">J</div>
+                        </div>
+                        <span>2,400+ runners on the waitlist</span>
+                    </div>
+                </div>
+                <div class="hero-phone animate-on-scroll">
+                    <div class="phone-mockup">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="phone-carousel" id="phoneCarousel">
+                                <!-- Screen 1: Active Workout -->
+                                <div class="phone-slide active">
+                                    <div class="screen-workout">
+                                        <div class="workout-header">
+                                            <span class="workout-type">Tempo Run</span>
+                                            <span class="workout-live"><span class="live-dot"></span>LIVE</span>
+                                        </div>
+                                        <div class="workout-pace">
+                                            <div class="pace-label">PACE</div>
+                                            <div class="pace-value">5:22</div>
+                                            <div class="pace-unit">/km</div>
+                                        </div>
+                                        <div class="workout-coach-msg">
+                                            <span class="coach-icon">🧠</span>
+                                            You're running faster than planned. Save energy for the tempo block.
+                                        </div>
+                                        <div class="workout-metrics">
+                                            <div class="metric"><span class="metric-val">4.82</span><span class="metric-label">km</span></div>
+                                            <div class="metric"><span class="metric-val">27:32</span><span class="metric-label">time</span></div>
+                                            <div class="metric"><span class="metric-val hr">156</span><span class="metric-label">bpm</span></div>
+                                            <div class="metric"><span class="metric-val">172</span><span class="metric-label">spm</span></div>
+                                        </div>
+                                        <div class="workout-segments">
+                                            <div class="segment done"></div>
+                                            <div class="segment done"></div>
+                                            <div class="segment active"></div>
+                                            <div class="segment"></div>
+                                            <div class="segment"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Screen 2: Plan Generation -->
+                                <div class="phone-slide">
+                                    <div class="screen-plan">
+                                        <div class="plan-header">Today's Plan</div>
+                                        <div class="plan-title">8K Tempo Run</div>
+                                        <div class="plan-segments">
+                                            <div class="plan-seg">
+                                                <div class="seg-icon warmup">🔥</div>
+                                                <div class="seg-info"><span class="seg-name">Warm Up</span><span class="seg-detail">2.0 km • Easy pace</span></div>
+                                            </div>
+                                            <div class="plan-seg">
+                                                <div class="seg-icon tempo">⚡</div>
+                                                <div class="seg-info"><span class="seg-name">Tempo</span><span class="seg-detail">4.0 km • 5:00/km</span></div>
+                                            </div>
+                                            <div class="plan-seg">
+                                                <div class="seg-icon cooldown">🌊</div>
+                                                <div class="seg-info"><span class="seg-name">Cool Down</span><span class="seg-detail">2.0 km • Easy pace</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="plan-start-btn">Start Workout</div>
+                                    </div>
+                                </div>
+                                <!-- Screen 3: Stats -->
+                                <div class="phone-slide">
+                                    <div class="screen-stats">
+                                        <div class="stats-header">This Week</div>
+                                        <div class="stats-big">
+                                            <div class="stats-big-val">32.4</div>
+                                            <div class="stats-big-label">km total</div>
+                                        </div>
+                                        <div class="stats-chart">
+                                            <div class="chart-bar" style="height:40%"><span>M</span></div>
+                                            <div class="chart-bar" style="height:70%"><span>T</span></div>
+                                            <div class="chart-bar" style="height:0%"><span>W</span></div>
+                                            <div class="chart-bar active" style="height:85%"><span>T</span></div>
+                                            <div class="chart-bar" style="height:55%"><span>F</span></div>
+                                            <div class="chart-bar" style="height:90%"><span>S</span></div>
+                                            <div class="chart-bar" style="height:30%"><span>S</span></div>
+                                        </div>
+                                        <div class="stats-row">
+                                            <div class="stat-item"><span class="stat-val">5:18</span><span class="stat-lbl">Avg Pace</span></div>
+                                            <div class="stat-item"><span class="stat-val">152</span><span class="stat-lbl">Avg HR</span></div>
+                                            <div class="stat-item"><span class="stat-val">5</span><span class="stat-lbl">Runs</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="phone-dots">
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="phone-section">
-        <div class="phone-mockup">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-                <div style="text-align:center;padding-top:20px">
-                    <div style="font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:2px;margin-bottom:4px">PACE</div>
-                    <div style="font-size:64px;font-weight:800;font-family:monospace;line-height:1">5:22</div>
-                    <div style="font-size:14px;color:rgba(255,255,255,0.4);margin-top:4px">/km</div>
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number" data-target="2400">0</div>
+                    <div class="stat-desc">Runners on waitlist</div>
                 </div>
-                <div style="margin-top:20px;padding:10px 12px;background:rgba(249,115,22,0.12);border-radius:10px;font-size:11px;color:#fff;line-height:1.4">
-                    🧠 You're running faster than planned. Save energy for the tempo block.
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number" data-target="50000">0</div>
+                    <div class="stat-desc">Km coached in beta</div>
                 </div>
-                <div style="display:flex;justify-content:space-between;margin-top:24px;padding:0 8px">
-                    <div style="text-align:center"><div style="font-size:16px;font-weight:700;font-family:monospace">4.82</div><div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:2px">km</div></div>
-                    <div style="text-align:center"><div style="font-size:16px;font-weight:700;font-family:monospace">27:32</div><div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:2px">time</div></div>
-                    <div style="text-align:center"><div style="font-size:16px;font-weight:700;font-family:monospace;color:#f97316">156</div><div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:2px">bpm</div></div>
-                    <div style="text-align:center"><div style="font-size:16px;font-weight:700;font-family:monospace">172</div><div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:2px">spm</div></div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number" data-target="12">0</div>
+                    <div class="stat-desc">Avg min/km improvement</div>
                 </div>
-                <div style="display:flex;gap:3px;margin-top:24px">
-                    <div style="flex:1;height:4px;border-radius:2px;background:rgba(249,115,22,0.3)"></div>
-                    <div style="flex:1;height:4px;border-radius:2px;background:rgba(249,115,22,0.3)"></div>
-                    <div style="flex:1;height:4px;border-radius:2px;background:#f97316"></div>
-                    <div style="flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,0.1)"></div>
-                    <div style="flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,0.1)"></div>
-                </div>
-                <div style="display:flex;align-items:center;gap:8px;margin-top:10px;padding:10px 12px;background:rgba(255,255,255,0.05);border-radius:8px">
-                    <span style="color:#f97316;font-size:10px">🚩</span>
-                    <span style="font-size:11px">Tempo effort</span>
-                    <span style="margin-left:auto;font-size:10px;color:rgba(255,255,255,0.4)">5:00/km</span>
-                </div>
-                <div style="display:flex;justify-content:center;gap:24px;margin-top:30px">
-                    <div style="width:44px;height:44px;border-radius:22px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:14px">⏸</div>
-                    <div style="width:44px;height:44px;border-radius:22px;background:rgba(239,68,68,0.15);display:flex;align-items:center;justify-content:center;font-size:14px;color:#ef4444">⏹</div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number" data-target="98">0</div>
+                    <div class="stat-desc">% user satisfaction</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
-            <div class="section-label">Features</div>
-            <h2 class="section-title">Everything a world-class<br>coach does. In your ear.</h2>
-            <p class="section-subtitle">PaceAI combines GPS tracking, AI intelligence, and natural voice to give you an experience no running app has ever delivered.</p>
+            <div class="section-header animate-on-scroll">
+                <div class="section-label">Features</div>
+                <h2 class="section-title">Everything a world-class<br>coach does. <span class="gradient-text">In your ear.</span></h2>
+                <p class="section-subtitle">PaceAI combines GPS tracking, AI intelligence, and natural voice to give you an experience no running app has ever delivered.</p>
+            </div>
 
             <div class="feature-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🎙️</div>
+                <div class="feature-card animate-on-scroll" data-delay="0">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
                     <h3>Real-Time Voice Coaching</h3>
                     <p>Natural voice cues that react to your pace, heart rate, and cadence. Not robotic announcements — real coaching that adapts every second.</p>
+                    <div class="feature-tag">Core Feature</div>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🧠</div>
+                <div class="feature-card animate-on-scroll" data-delay="100">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
                     <h3>AI Workout Planning</h3>
                     <p>Tell PaceAI your goal and it generates a personalized plan — warmup, tempo, intervals, cooldown — tailored to your fitness level.</p>
+                    <div class="feature-tag">Powered by Claude</div>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">⌚</div>
+                <div class="feature-card animate-on-scroll" data-delay="200">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+                    </div>
                     <h3>Apple Watch Integration</h3>
-                    <p>Stream heart rate from your wrist for precise zone coaching. See pace, distance, and coaching cues on your Apple Watch.</p>
+                    <p>Stream heart rate from your wrist for precise zone coaching. See pace, distance, and coaching cues directly on your Apple Watch.</p>
+                    <div class="feature-tag">watchOS</div>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">💬</div>
+                <div class="feature-card animate-on-scroll" data-delay="0">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
                     <h3>Voice Conversation</h3>
                     <p>Ask your coach mid-run: "How am I doing?" or say "I'm tired" and the workout adapts instantly. Natural two-way conversation.</p>
+                    <div class="feature-tag">Speech AI</div>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📴</div>
+                <div class="feature-card animate-on-scroll" data-delay="100">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                    </div>
                     <h3>Works Offline</h3>
                     <p>On-device coaching engine runs without internet. Take PaceAI to trails, treadmills, or anywhere with no cell signal.</p>
+                    <div class="feature-tag">On-Device</div>
                 </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📊</div>
+                <div class="feature-card animate-on-scroll" data-delay="200">
+                    <div class="feature-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                    </div>
                     <h3>Smart Analytics</h3>
                     <p>Post-run splits, HR zone charts, pace trends, and AI-generated summaries with actionable training recommendations.</p>
+                    <div class="feature-tag">Insights</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-label">How It Works</div>
+                <h2 class="section-title">Three steps. <span class="gradient-text">Zero complexity.</span></h2>
+            </div>
+
+            <div class="steps-container">
+                <div class="steps-line"></div>
+                <div class="step animate-on-scroll" data-delay="0">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Tell your coach</h3>
+                        <p>Say or type your goal: "5K easy run", "Tempo workout", or "Train me for a marathon."</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-demo voice-demo">
+                            <div class="voice-wave">
+                                <span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="voice-text">"I want to do a tempo run today"</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll" data-delay="200">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Get a personalized plan</h3>
+                        <p>AI generates a structured workout with segments, target paces, and HR zones — tailored to your current fitness.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-demo plan-demo">
+                            <div class="mini-segment"><span class="seg-color warmup"></span>Warm Up 2km</div>
+                            <div class="mini-segment"><span class="seg-color tempo"></span>Tempo 4km @ 5:00</div>
+                            <div class="mini-segment"><span class="seg-color cooldown"></span>Cool Down 2km</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step animate-on-scroll" data-delay="400">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Run with your coach</h3>
+                        <p>Start running. Your AI coach speaks in your ear, adapting in real time to keep you on track and pushing you when you're ready.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-demo run-demo">
+                            <div class="run-metric-mini">5:22 <small>/km</small></div>
+                            <div class="run-coach-mini">"Great rhythm. Hold this pace."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching Demo -->
     <section class="coaching-section" id="coaching">
         <div class="container">
-            <div style="text-align:center;margin-bottom:60px">
+            <div class="section-header animate-on-scroll">
                 <div class="section-label">Live Coaching</div>
-                <h2 class="section-title">Coaching that feels human</h2>
-                <p class="section-subtitle" style="margin:16px auto 0">Not "heart rate exceeds threshold." Real coaching that understands context, adapts to you, and sounds like a person.</p>
+                <h2 class="section-title">Coaching that <span class="gradient-text">feels human</span></h2>
+                <p class="section-subtitle">Not "heart rate exceeds threshold." Real coaching that understands context, adapts to you, and sounds like a person.</p>
             </div>
 
-            <div class="coaching-demo">
-                <div class="chat-context">Mile 2 — Tempo segment begins</div>
-                <div class="chat-bubble chat-coach">Transitioning to tempo. Find that 5:35 rhythm. You've done this before — trust the legs.</div>
-                <div class="chat-context">Mile 3 — Running fast</div>
-                <div class="chat-bubble chat-coach">You're about 40 seconds faster than today's target. Ease off just a bit. Save that fire for mile five.</div>
-                <div class="chat-bubble chat-user">How am I doing?</div>
-                <div class="chat-bubble chat-coach">You're crushing it. 4.8K in, averaging 5:28 per K. Heart rate's 155, right where we want it. Keep this rhythm.</div>
-                <div class="chat-context">Mile 5 — Heart rate rising</div>
-                <div class="chat-bubble chat-coach">Heart rate climbing. Shorten your stride and deepen your breathing. Let's bring it back to zone 3.</div>
-                <div class="chat-bubble chat-coach">Perfect. That's exactly where we want to be.</div>
-                <div class="chat-context">Final push</div>
-                <div class="chat-bubble chat-coach">Last 800 meters. You've got plenty left. Let's finish this strong.</div>
+            <div class="coaching-demo-container animate-on-scroll">
+                <div class="coaching-timeline">
+                    <div class="timeline-item" data-time="0:00">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-context">Warm Up — Easy pace</div>
+                            <div class="chat-bubble chat-coach">Starting with a nice easy warm up. Find a comfortable rhythm, keep your breathing relaxed.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-time="8:30">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-context">Tempo segment begins</div>
+                            <div class="chat-bubble chat-coach">Transitioning to tempo. Find that 5:00 rhythm. You've done this before — trust the legs.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-time="12:45">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-context">Pace drifting fast — 4:40/km</div>
+                            <div class="chat-bubble chat-coach">You're about 20 seconds faster than today's target. Ease off just a bit — save that fire for the last kilometer.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-time="15:20">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="chat-bubble chat-user">How am I doing?</div>
+                            <div class="chat-bubble chat-coach">You're crushing it. 4.8K in, averaging 5:05 per K. Heart rate's 155 — right in the sweet spot. Keep this rhythm going.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-time="22:00">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-context">Heart rate rising — 172 bpm</div>
+                            <div class="chat-bubble chat-coach">Heart rate climbing. Shorten your stride and focus on deep exhales. Let's bring it back to zone 3.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-time="26:30">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-context">Final 800m</div>
+                            <div class="chat-bubble chat-coach">Last 800 meters. You've got plenty left in the tank. Let's finish this strong — push it!</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="how-it-works" id="how-it-works">
-        <div class="container" style="text-align:center">
-            <div class="section-label">How It Works</div>
-            <h2 class="section-title">Three steps. Zero complexity.</h2>
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-label">Testimonials</div>
+                <h2 class="section-title">Loved by <span class="gradient-text">beta runners</span></h2>
+            </div>
 
-            <div class="steps">
-                <div class="step fade-in">
-                    <div class="step-number">1</div>
-                    <h3>Tell your coach</h3>
-                    <p>Say or type your goal: "5K easy run", "Tempo workout", or "I want to run 8 miles."</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card animate-on-scroll" data-delay="0">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>"I've tried every running app out there. PaceAI is the first one that actually feels like having a coach. The voice cues are spot-on and it genuinely adapts to how I'm feeling."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background:#3b82f6">M</div>
+                        <div>
+                            <div class="author-name">Marcus J.</div>
+                            <div class="author-meta">Marathon runner • Portland, OR</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="step fade-in">
-                    <div class="step-number">2</div>
-                    <h3>Get a plan</h3>
-                    <p>AI generates a structured workout with segments, target paces, and HR zones tailored to you.</p>
+                <div class="testimonial-card animate-on-scroll" data-delay="100">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>"The tempo workouts are incredible. It knows exactly when to push me and when to ease off. My 10K time dropped by 3 minutes in 6 weeks."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background:#10b981">R</div>
+                        <div>
+                            <div class="author-name">Rachel K.</div>
+                            <div class="author-meta">10K enthusiast • Austin, TX</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="step fade-in">
-                    <div class="step-number">3</div>
-                    <h3>Run with your coach</h3>
-                    <p>Start running. Your AI coach speaks in your ear, adapting in real time to keep you on track.</p>
+                <div class="testimonial-card animate-on-scroll" data-delay="200">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>"What blew my mind is that I can literally talk to my coach mid-run. I said 'I'm struggling' and it immediately adjusted the pace target. Game-changer."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background:#8b5cf6">A</div>
+                        <div>
+                            <div class="author-name">Alex T.</div>
+                            <div class="author-meta">Trail runner • Denver, CO</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-label">Pricing</div>
+                <h2 class="section-title">Simple, <span class="gradient-text">honest pricing</span></h2>
+                <p class="section-subtitle">Start free, upgrade when you're hooked.</p>
+            </div>
+
+            <div class="pricing-toggle animate-on-scroll">
+                <span class="toggle-label active" id="monthlyLabel">Monthly</span>
+                <button class="toggle-switch" id="pricingToggle" aria-label="Toggle billing period">
+                    <span class="toggle-knob"></span>
+                </button>
+                <span class="toggle-label" id="yearlyLabel">Yearly <span class="save-badge">Save 33%</span></span>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card animate-on-scroll" data-delay="0">
+                    <div class="pricing-tier">Free</div>
+                    <div class="pricing-price">
+                        <span class="price-amount">$0</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <p class="pricing-desc">Perfect for casual runners getting started.</p>
+                    <ul class="pricing-features">
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>GPS tracking & pace</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Basic voice announcements</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Run history (30 days)</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>3 AI workouts per month</li>
+                    </ul>
+                    <a href="#waitlist" class="btn btn-secondary btn-block">Get Started</a>
+                </div>
+                <div class="pricing-card popular animate-on-scroll" data-delay="100">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-tier">Pro</div>
+                    <div class="pricing-price">
+                        <span class="price-amount" data-monthly="9" data-yearly="6">$9</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <p class="pricing-desc">For dedicated runners who want AI coaching.</p>
+                    <ul class="pricing-features">
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Everything in Free</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Unlimited AI voice coaching</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Unlimited AI workout plans</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Apple Watch companion</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Advanced analytics & trends</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Voice conversations mid-run</li>
+                    </ul>
+                    <a href="#waitlist" class="btn btn-primary btn-block">Join Waitlist</a>
+                </div>
+                <div class="pricing-card animate-on-scroll" data-delay="200">
+                    <div class="pricing-tier">Team</div>
+                    <div class="pricing-price">
+                        <span class="price-amount" data-monthly="19" data-yearly="13">$19</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <p class="pricing-desc">For running clubs and coaching groups.</p>
+                    <ul class="pricing-features">
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Everything in Pro</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Group challenges</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Coach dashboard</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Custom training programs</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li>
+                    </ul>
+                    <a href="#waitlist" class="btn btn-secondary btn-block">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-label">FAQ</div>
+                <h2 class="section-title">Frequently asked <span class="gradient-text">questions</span></h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item animate-on-scroll" data-delay="0">
+                    <button class="faq-question">
+                        <span>How does the AI coaching work during a run?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>PaceAI uses a hybrid approach. An on-device engine monitors your real-time metrics (pace, heart rate, cadence) and provides instant feedback with zero latency. For more complex coaching decisions — like adjusting your plan mid-run or answering questions — it connects to our AI (powered by Anthropic Claude) for natural, conversational guidance. Both work together seamlessly.</p>
+                    </div>
+                </div>
+                <div class="faq-item animate-on-scroll" data-delay="50">
+                    <button class="faq-question">
+                        <span>Do I need an Apple Watch?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No! PaceAI works great with just your iPhone. The Apple Watch adds heart rate streaming for precise zone-based coaching, but all GPS tracking, voice coaching, and workout planning works perfectly from your phone alone.</p>
+                    </div>
+                </div>
+                <div class="faq-item animate-on-scroll" data-delay="100">
+                    <button class="faq-question">
+                        <span>Does it work offline?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! The core coaching engine runs entirely on-device. You'll get pace feedback, zone alerts, cadence coaching, and segment guidance without any internet connection. The cloud AI features (conversational coaching, post-run summaries) sync when you're back online.</p>
+                    </div>
+                </div>
+                <div class="faq-item animate-on-scroll" data-delay="150">
+                    <button class="faq-question">
+                        <span>How is this different from Nike Run Club or Strava?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Those are excellent tracking apps. PaceAI is a coaching app. The difference: trackers record what happened. PaceAI tells you what to do right now. It reacts to your current pace, adjusts when you're struggling, pushes you when you've got more, and generates plans specific to your goals and fitness level. It's like having a personal coach running beside you.</p>
+                    </div>
+                </div>
+                <div class="faq-item animate-on-scroll" data-delay="200">
+                    <button class="faq-question">
+                        <span>What data does PaceAI collect?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Privacy-first. All your health and fitness data stays on your device. We don't sell data, don't use it for ads, and don't share it with third parties. When you use cloud AI features, only anonymized metrics are sent — never your identity or location history. See our <a href="privacy.html">full privacy policy</a>.</p>
+                    </div>
+                </div>
+                <div class="faq-item animate-on-scroll" data-delay="250">
+                    <button class="faq-question">
+                        <span>When will PaceAI launch?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We're in closed beta now and planning a public launch on the App Store in late 2026. Join the waitlist to get early access and be among the first to try PaceAI.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Waitlist -->
     <section class="cta" id="waitlist">
         <div class="container">
-            <h2>Ready to run smarter?</h2>
-            <p>Join the waitlist and be first to experience AI coaching.</p>
-            <form class="waitlist-form" onsubmit="handleSubmit(event)">
-                <input type="email" placeholder="your@email.com" required id="email-input">
-                <button type="submit" class="btn btn-primary">Join Waitlist</button>
-            </form>
-            <p id="form-success" style="display:none;color:#4ade80;margin-top:16px;font-size:14px">You're on the list! We'll notify you when PaceAI launches.</p>
+            <div class="cta-card animate-on-scroll">
+                <div class="cta-glow"></div>
+                <h2>Ready to run smarter?</h2>
+                <p>Join the waitlist and be the first to experience AI coaching that actually makes you faster.</p>
+                <form class="waitlist-form" id="waitlistForm">
+                    <div class="form-group">
+                        <input type="email" placeholder="your@email.com" required id="emailInput" autocomplete="email">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span class="btn-text">Join Waitlist</span>
+                            <span class="btn-loader" style="display:none">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.3)" stroke-width="3"/><path d="M12 2a10 10 0 0 1 10 10" stroke="white" stroke-width="3" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.8s" repeatCount="indefinite"/></path></svg>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="form-error" id="formError"></div>
+                    <div class="form-success" id="formSuccess">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>You're on the list! We'll email you when PaceAI launches.</span>
+                    </div>
+                </form>
+                <p class="cta-note">No spam, ever. Unsubscribe anytime.</p>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        PaceAI
+                    </div>
+                    <p class="footer-tagline">Your AI running coach. Every single run.</p>
+                </div>
+                <div class="footer-links-grid">
+                    <div class="footer-col">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#pricing">Pricing</a>
+                        <a href="#coaching">Coaching</a>
+                        <a href="#faq">FAQ</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="mailto:hello@paceai.app">Contact</a>
+                        <a href="https://github.com/krriishhaa/paceai-website">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
                 <div class="footer-copy">© 2026 PaceAI. All rights reserved.</div>
-                <div class="footer-links">
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="mailto:hello@paceai.app">Contact</a>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Waitlist form
-        function handleSubmit(e) {
-            e.preventDefault();
-            const email = document.getElementById('email-input').value;
-            // Store in localStorage as demo (replace with real backend)
-            const waitlist = JSON.parse(localStorage.getItem('paceai_waitlist') || '[]');
-            waitlist.push({ email, timestamp: new Date().toISOString() });
-            localStorage.setItem('paceai_waitlist', JSON.stringify(waitlist));
-            
-            document.getElementById('email-input').value = '';
-            document.getElementById('form-success').style.display = 'block';
-            e.target.style.display = 'none';
-        }
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
